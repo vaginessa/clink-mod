@@ -39,15 +39,15 @@ function get_last_git_commit()
         return line:sub(1, 6)
     end
 
-    return "?"
+    return "unknown"
 end
 
 --------------------------------------------------------------------------------
 function useXpToolset(base, cfg)
     local p = "v110_xp"
     if _ACTION > "vs2012" then
-        p = "v120_xp"
-    end 
+        p = "v141_xp"
+    end
 
     if _ACTION > "vs2010" then
         _p(2,'<PlatformToolset>%s</PlatformToolset>', p)
@@ -114,7 +114,8 @@ solution("clink")
     platforms({"x32", "x64"})
     location(to)
 
-    flags("Symbols")
+    characterset("MBCS")
+    symbols "on"
     flags("StaticRuntime")
     defines("HAVE_CONFIG_H")
     defines("HANDLE_MULTIBYTE")
